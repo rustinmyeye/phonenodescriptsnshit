@@ -11,5 +11,5 @@ sleep 2
 clear
 chmod +x ergo
 clear
-sh ergo
+bash ergo
 clear
