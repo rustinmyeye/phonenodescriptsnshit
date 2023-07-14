@@ -1,0 +1,157 @@
+#!/bin/bash
+
+echo "- Retrieving latest node release."
+            LATEST_ERGO_RELEASE=$(curl -s "https://api.github.com/repos/ergoplatform/ergo/releases/latest" | awk -F '"' '/tag_name/{print $4}')
+            LATEST_ERGO_RELEASE_NUMBERS=$(echo ${LATEST_ERGO_RELEASE} | cut -c 2-)
+            ERGO_DOWNLOAD_URL=https://github.com/ergoplatform/ergo/releases/download/${LATEST_ERGO_RELEASE}/ergo-${LATEST_ERGO_RELEASE_NUMBERS}.jar
+            echo "- Downloading Latest known Ergo release: ${LATEST_ERGO_RELEASE}."
+            curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
+
+export BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc7c2"
+       PEER_CHECK_INTERVAL=10
+       MAX_CHECKS=6
+       CHECK_COUNT=0
+       ROUND_COUNT=0
+# Set some environment variables
+set_environment(){
+    export KEY=ee7OHzUHWFBB8eeBf9PD9BQk2
+
+        
+    let j=0
+    #OS=$(uname -m)
+
+    
+    dt=$(date '+%d/%m/%Y %H:%M:%S');
+    let i=0
+    let PERCENT_BLOCKS=100
+    let PERCENT_HEADERS=100
+    
+}
+    
+set_configuration(){
+        echo "ergo {
+ node {
+    utxo {
+        # Download and apply UTXO set snapshot and full-blocks after that
+        utxoBootstrap = true
+
+        # how many utxo set snapshots to store, 0 means that they are not stored at all
+        storingUtxoSnapshots = 2
+
+        # how many utxo set snapshots for a height with same id we need to find in p2p network
+        # in order to start downloading it
+        p2pUtxoSnapshots = 2
+    }
+  }
+}
+
+scorex {
+    restApi {
+        apiKeyHash = "$BLAKE_HASH"
+    }
+}" > ergo.conf
+}
+
+main_thing(){
+    set_environment
+    # Check for the prescence of log files
+    count=`ls -1 blake.conf 2>/dev/null | wc -l`
+    if [ $count != 0 ]; then   
+    API_KEY=$(cat "api.conf")
+    echo "
+  Configuration is ok. Starting up..."
+    BLAKE_HASH=$(cat "blake.conf")
+    echo "
+"
+    set_configuration
+    start_node
+else 
+    # If no .log file - we assume first run
+    first_run 
+fi
+}
+
+start_node(){
+    tmux new-session -d -s node_session './start'
+    while ! curl --output /dev/null --silent --head --fail http://localhost:9053; do sleep 1; done;  # wait for node be ready with progress bar
+    
+    echo "- Node has started. Searching for peers..."
+    end_time=$(($(date +%s) + 120))
+
+while [ $(date +%s) -lt $end_time ]; do
+    PEERS=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin).get('peersCount'));")
+    echo -ne "- Number of connected peers: $PEERS"'\r'
+done
+        echo "
+        "
+    
+}
+
+first_run() {
+echo "#!/bin/sh  
+while true  
+do
+          java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf
+            sleep 100
+    done" > start
+chmod +x start
+KEY=ee7OHzUHWFBB8eeBf9PD9BQk2
+BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc7c2"
+#set_configuration
+### Download the latest .jar file                                                                    
+        if [ ! -e *.jar ]; then 
+            echo "- Retrieving latest node release."
+            LATEST_ERGO_RELEASE=$(curl -s "https://api.github.com/repos/ergoplatform/ergo/releases/latest" | awk -F '"' '/tag_name/{print $4}')
+            LATEST_ERGO_RELEASE_NUMBERS=$(echo ${LATEST_ERGO_RELEASE} | cut -c 2-)
+            ERGO_DOWNLOAD_URL=https://github.com/ergoplatform/ergo/releases/download/${LATEST_ERGO_RELEASE}/ergo-${LATEST_ERGO_RELEASE_NUMBERS}.jar
+            echo "- Downloading Latest known Ergo release: ${LATEST_ERGO_RELEASE}."
+            curl --silent -L ${ERGO_DOWNLOAD_URL} --output ergo.jar
+        fi 
+        
+        echo "
+Generating unique API key..."
+        sleep 2
+        
+       length=25
+        export API_KEY=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w $length | head -n 1)
+        echo "$API_KEY" > api.conf
+        
+        #export key=$(cat api.conf)
+        
+        tmux new-session -d -s node './start'
+        echo "- Node has started... Setting blake hash and finding peers"
+        if ! ping -c 1 http://localhost:9053/info &> /dev/null; then
+        echo "
+        "
+        sleep 20
+    fi
+        
+    end_time=$(($(date +%s) + 100))
+
+while [ $(date +%s) -lt $end_time ]; do
+    PEERS=$(curl --silent --max-time 10 --output -X GET "http://localhost:9053/info" -H "accept: application/json" | python3 -c "import sys, json; print(json.load(sys.stdin).get('peersCount'));")
+    echo -ne "- Number of connected peers: $PEERS"'\r'
+done
+        
+        echo "
+        "
+        
+        export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
+        echo "$BLAKE_HASH" > blake.conf
+        echo "BLAKE_HASH:$BLAKE_HASH"
+        
+        #areyou_there
+        
+        curl -X POST --max-time 10 "http://127.0.0.1:9053/node/shutdown" -H "api_key: $KEY"
+        sleep 10
+        tmux kill-session -t node_session
+        #rm -rf .ergo
+        clear
+        # Add blake hash
+        #echo "Your unique API key will be added to the configuration when you close the app completely and restart"
+        set_configuration
+        #error_log
+        #print_console
+        main_thing
+        
+}
