@@ -11,5 +11,6 @@ sleep 2
 clear
 chmod +x ergo
 clear
+tmux
 bash ergo
 clear
