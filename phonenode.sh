@@ -12,6 +12,5 @@ clear
 chmod +x ergo
 clear
 tmux
-alias ergo="bash ergo"
+bash ergo
 clear
-ergo
