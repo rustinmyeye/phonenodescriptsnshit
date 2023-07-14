@@ -9,4 +9,4 @@ curl https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine
 sleep 2
 clear
 chmod +x ergo
-tmux new-session  -s ergo_session 'bash ergo'
+tmux new-session -s ergo_session 'bash ergo'
