@@ -4,12 +4,12 @@
 echo "Downloading stuff... please wait :)"
 apt-get update -qq && apt-get upgrade -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -qq
 clear
-apt-get install -y openjdk-17 python3 wget tmux curl
+apt-get install -y openjdk-17 python3 wget tmux
 clear
-curl https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-node-install.sh >> ergo.sh
+curl https://raw.githubusercontent.com/rustinmyeye/ErgoNodeAndroid/master/alpine-node-install.sh >> ergo
 sleep 2
 clear
-chmod +x ergo.sh
+chmod +x ergo
 clear
-sh ergo.sh
+sh ergo
 clear
