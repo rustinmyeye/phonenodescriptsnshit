@@ -40,7 +40,9 @@ scorex {
         apiKeyHash = "$BLAKE_HASH"
     }
 }" > ergo.conf
+
 }
+
 
 main_thing(){
     set_environment
