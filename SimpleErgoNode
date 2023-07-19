@@ -15,7 +15,7 @@ export BLAKE_HASH="d3bce9a53e3fbaba4a0cb92f9e419bb47123c07ab31f626362e2658e7dcfc
        
 # Set some environment variables
 set_environment(){
-    export KEY="ee7OHzUHWFBB8eeBf9PD9BQk2"
+    export KEY=ee7OHzUHWFBB8eeBf9PD9BQk2
    }
 
 set_configuration(){
@@ -57,6 +57,7 @@ main_thing(){
 "
     set_configuration
     start_node
+print_console
 else 
     # If no .log file - we assume first run
     first_run 
