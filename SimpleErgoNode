@@ -71,7 +71,6 @@ print_console() {
     done
 }
 
-
 start_node(){
     tmux new-session -d -s node_session './start'
 }
