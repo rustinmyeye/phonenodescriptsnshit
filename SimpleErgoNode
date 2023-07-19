@@ -70,6 +70,8 @@ print_console() {
             "View the Ergo node panel at 127.0.0.1:9053/panel" \
             "Your unique API key is: $API_KEY" \
             "To start the node in the future, use ./ergo"
+            
+            sleep 300
    exit
 }
 
