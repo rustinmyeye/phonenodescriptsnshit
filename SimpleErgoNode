@@ -65,13 +65,12 @@ fi
 }
 
 print_console() {
-    while sleep 20; do
-        clear
+    
         printf "%s    \n\n" \
             "View the Ergo node panel at 127.0.0.1:9053/panel" \
             "Your unique API key is: $API_KEY" \
             "To start the node in the future, use ./ergo"
-    done
+   exit
 }
 
 start_node(){
