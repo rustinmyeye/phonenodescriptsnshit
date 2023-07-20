@@ -148,7 +148,7 @@ first_run() {
 echo "#!/bin/sh  
 while true  
 do
-          java -jar -Xmx2G ergo.jar --mainnet -c ergo.conf
+          java -jar ergo.jar --mainnet -c ergo.conf
             sleep 100
     done" > start
     
