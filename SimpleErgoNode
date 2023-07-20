@@ -36,16 +36,13 @@ set_configuration(){
 }
 
 scorex {
-    network {
-    nodeName = "AndroidNode"${scorex.network.appVersion}
-    nodeName = ${?NODENAME}
-  }
-restApi {
+    restApi {
         apiKeyHash = "$BLAKE_HASH"
     }
 }" > ergo.conf
 
 }
+
 
 
 
