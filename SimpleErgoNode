@@ -19,21 +19,8 @@ set_environment(){
    }
 
 set_configuration(){
-        echo "ergo {
-  node {
-    mining = false
-    # Optional and individual checkpoint.
-    # Till the height given (inclusive) validation of transaction scripts skipped.
-    # This helps in improving performance and memory usage during initial bootstrapping.
-    # The node still applying transactions to UTXO set and so checks UTXO set digests for each block.
-    # And so the block at checkpoint height is to be checked also against expected UTXO set digest.
-    #
-    # To validate all the scripts for all the blocks, set checkpoint = null.
-    checkpoint = {
-      height = 1050000
-      blockId = "7829c6513c5b319b86e87253ed29d51fed61597c65e32f5197434461ccc4c905"
-    }
-
+        echo "echo "ergo {
+ node {
     utxo {
         # Download and apply UTXO set snapshot and full-blocks after that
         utxoBootstrap = true
@@ -46,17 +33,11 @@ set_configuration(){
         p2pUtxoSnapshots = 2
     }
   }
-
 }
 
 scorex {
-    network {
-    magicBytes = [1, 0, 2, 4]
-    bindAddress = "0.0.0.0:9030"
-    nodeName = "AndroidNode"
-  }
-restApi {
-        apiKeyHash = "$BLAKE_HASH" 
+    restApi {
+        apiKeyHash = "$BLAKE_HASH"
     }
 }" > ergo.conf
 
