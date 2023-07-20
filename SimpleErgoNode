@@ -53,7 +53,7 @@ scorex {
     network {
     magicBytes = [1, 0, 2, 4]
     bindAddress = "0.0.0.0:9030"
-    nodeName = "AndroidNode"${scorex.network.appVersion}
+    nodeName = "AndroidNode"
     nodeName = ${?NODENAME}
   }
 restApi {
