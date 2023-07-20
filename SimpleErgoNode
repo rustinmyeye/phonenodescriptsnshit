@@ -20,7 +20,6 @@ set_environment(){
 
 set_configuration(){
         echo "ergo {
-  networkType = "mainnet"
   node {
     mining = false
     # Optional and individual checkpoint.
