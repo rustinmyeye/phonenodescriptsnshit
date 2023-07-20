@@ -20,12 +20,8 @@ set_environment(){
 
 set_configuration(){
         echo "ergo {
-  networkType = "mainnet"
   node {
     mining = false
-    # start mining without waiting for a new block. helps in avoiding waiting period after node restart
-    offlineGeneration = true
-
     # Optional and individual checkpoint.
     # Till the height given (inclusive) validation of transaction scripts skipped.
     # This helps in improving performance and memory usage during initial bootstrapping.
@@ -35,7 +31,7 @@ set_configuration(){
     # To validate all the scripts for all the blocks, set checkpoint = null.
     checkpoint = {
       height = 1050000
-      blockId = "7829c6513c5b319b86e87253ed29d51fed61597c65e32f5197434461ccc4c905"
+      blockId = "f5fd0fd9eb346a79216553339b8f6c3d7d3ca859801419b086f6435d02c3b047"
     }
 
     # List with hex-encoded identifiers of transactions banned from getting into memory pool
