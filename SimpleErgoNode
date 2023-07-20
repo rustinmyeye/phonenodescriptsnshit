@@ -34,12 +34,6 @@ set_configuration(){
       blockId = "7829c6513c5b319b86e87253ed29d51fed61597c65e32f5197434461ccc4c905"
     }
 
-    # List with hex-encoded identifiers of transactions banned from getting into memory pool
-    blacklistedTransactions = []
-
-    # maximum cost of transaction for it to be propagated
-    maxTransactionCost = 4900000
-
     utxo {
         # Download and apply UTXO set snapshot and full-blocks after that
         utxoBootstrap = true
