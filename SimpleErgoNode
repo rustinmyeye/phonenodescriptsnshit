@@ -20,26 +20,7 @@ set_environment(){
 
 set_configuration(){
         echo "ergo {
-  node {
-    mining = false
-    # Optional and individual checkpoint.
-    # Till the height given (inclusive) validation of transaction scripts skipped.
-    # This helps in improving performance and memory usage during initial bootstrapping.
-    # The node still applying transactions to UTXO set and so checks UTXO set digests for each block.
-    # And so the block at checkpoint height is to be checked also against expected UTXO set digest.
-    #
-    # To validate all the scripts for all the blocks, set checkpoint = null.
-    checkpoint = {
-      height = 1050000
-      blockId = "f5fd0fd9eb346a79216553339b8f6c3d7d3ca859801419b086f6435d02c3b047"
-    }
-
-    # List with hex-encoded identifiers of transactions banned from getting into memory pool
-    blacklistedTransactions = []
-
-    # maximum cost of transaction for it to be propagated
-    maxTransactionCost = 4900000
-
+ node {
     utxo {
         # Download and apply UTXO set snapshot and full-blocks after that
         utxoBootstrap = true
@@ -52,35 +33,12 @@ set_configuration(){
         p2pUtxoSnapshots = 2
     }
   }
-
 }
 
 scorex {
-  network {
-    magicBytes = [1, 0, 2, 4]
-    bindAddress = "0.0.0.0:9030"
-    nodeName = "AndroidNode"${scorex.network.appVersion}
-    nodeName = ${?NODENAME}
-    knownPeers = [
-      "213.239.193.208:9030",
-      "159.65.11.55:9030",
-      "165.227.26.175:9030",
-      "159.89.116.15:9030",
-      "136.244.110.145:9030",
-      "94.130.108.35:9030",
-      "51.75.147.1:9020",
-      "221.165.214.185:9030",
-      "217.182.197.196:9030",
-      "173.212.220.9:9030",
-      "176.9.65.58:9130",
-      "213.152.106.56:9030"
-    ]
-  }
-  restApi {
+    restApi {
         apiKeyHash = "$BLAKE_HASH"
-
-    bindAddress = "0.0.0.0:9053"
-  }
+    }
 }" > ergo.conf
 
 }
