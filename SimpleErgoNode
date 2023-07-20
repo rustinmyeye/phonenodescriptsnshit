@@ -54,7 +54,6 @@ scorex {
     magicBytes = [1, 0, 2, 4]
     bindAddress = "0.0.0.0:9030"
     nodeName = "AndroidNode"
-    nodeName = ${?NODENAME}
   }
 restApi {
         apiKeyHash = "$BLAKE_HASH" 
