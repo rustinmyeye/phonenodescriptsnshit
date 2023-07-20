@@ -44,6 +44,7 @@ scorex {
 }
 
 
+
 main_thing(){
     set_environment
     # Check for the prescence of log files
