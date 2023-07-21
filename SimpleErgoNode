@@ -39,8 +39,7 @@ scorex {
     network {
     bindAddress = "0.0.0.0:9030"
     upnpEnabled = yes
-    nodeName = "ErgoNode Android - "${scorex.network.appVersion}
-    nodeName = ${?NODENAME}
+    nodeName = "ErgoNode Android"
 }
     restApi {
         apiKeyHash = "$BLAKE_HASH"
