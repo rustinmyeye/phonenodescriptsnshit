@@ -36,11 +36,6 @@ set_configuration(){
 }
 
 scorex {
-    network {
-    bindAddress = "0.0.0.0:9030"
-    upnpEnabled = yes
-    nodeName = "ErgoNode Android"
-}
     restApi {
         apiKeyHash = "$BLAKE_HASH"
     }
