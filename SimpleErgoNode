@@ -58,7 +58,7 @@ main_thing(){
     BLAKE_HASH=$(cat "blake.conf")
     echo "
 "
-    set_configuration
+    #set_configuration
     start_node
 print_console
 else 
