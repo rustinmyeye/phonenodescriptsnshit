@@ -24,6 +24,7 @@ set_configuration(){
     node.stateType = "digest"
     node.blocksToKeep = 1440
     node.nipopow.nipopowBootstrap = true
+    ergo.node.extraIndex = true
 }
 
 scorex {
