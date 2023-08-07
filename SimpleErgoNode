@@ -20,18 +20,10 @@ set_environment(){
 
 set_configuration(){
         echo "ergo {
-    node {
-        mining = false
-
-        utxo {
-           utxoBootstrap = true
-           storingUtxoSnapshots = 0
-        }
-        nipopow {
-           nipopowBootstrap = true
-           p2pNipopows = 2
-        }
-    }
+   networkType = "mainnet"
+   node.stateType = "digest"
+   node.blocksToKeep = 1440
+   node.nipopow.nipopowBootstrap = true    
 }
 
 scorex {
