@@ -21,9 +21,9 @@ set_environment(){
 set_configuration(){
         echo "ergo {
    networkType = "mainnet"
-   node.stateType = "digest"
-   node.blocksToKeep = 1440
-   node.nipopow.nipopowBootstrap = true    
+ #  node.stateType = "digest"
+ #  node.blocksToKeep = 1440
+ #  node.nipopow.nipopowBootstrap = true    
 }
 
 scorex {
