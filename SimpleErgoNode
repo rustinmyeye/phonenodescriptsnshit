@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "- Retrieving latest node release."
             LATEST_ERGO_RELEASE=$(curl -s "https://api.github.com/repos/ergoplatform/ergo/releases/latest" | awk -F '"' '/tag_name/{print $4}')
@@ -111,7 +111,7 @@ Generating unique API key..."
         
         tmux new-session -d -s node 'java -jar ergo.jar --mainnet -c ergo.conf'
         echo "- Node has started... Setting blake hash"
-        sleep 10
+        sleep 100
 
         export BLAKE_HASH=$(curl --silent -X POST "http://localhost:9053/utils/hash/blake2b" -H "accept: application/json" -H "Content-Type: application/json" -d "\"$API_KEY\"")
         echo "$BLAKE_HASH" > blake.conf
